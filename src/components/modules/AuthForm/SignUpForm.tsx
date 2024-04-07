@@ -1,13 +1,16 @@
-import React from "react";
+"use client";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
 
 import EmailInput from "@/components/elements/AuthPage/EmailInput";
-import { useForm } from "react-hook-form";
-import { IInputs } from "@/types/auth";
-
-import styles from "@/styles/auth/index.module.scss";
 import PasswordInput from "@/components/elements/AuthPage/PasswordInput";
 import PhoneInput from "@/components/elements/AuthPage/PhoneInput";
+
+import { signUpFn } from "@/api/auth";
+import { IInputs } from "@/types/auth";
+import styles from "@/styles/auth/index.module.scss";
+import PasswordRepeatInput from "@/components/elements/AuthPage/PasswordRepeatInput";
+// import { toast } from "react-toastify";
 
 const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
   const {
@@ -17,13 +20,25 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
     resetField,
   } = useForm<IInputs>();
 
-  const onSubmit = (data: IInputs) => {
-    console.log(data);
-    resetField("phone");
-    resetField("email");
-    resetField("password");
+  const onSubmit = async (data: IInputs) => {
+    try {
+      const userData = await signUpFn({
+        url: "/auth/register",
+        phone: data.phone,
+        email: data.email,
+        password: data.password,
+        passwordRepeat: data.passwordRepeat,
+      });
+      console.log(userData);
 
-    switchForm();
+      resetField("phone");
+      resetField("email");
+      resetField("password");
+
+      switchForm();
+    } catch (error) {
+      // toast.error((error as Error).message);
+    }
   };
   return (
     <>
@@ -53,6 +68,7 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
         <PhoneInput register={register} errors={errors} />
         <EmailInput register={register} errors={errors} />
         <PasswordInput register={register} errors={errors} />
+        <PasswordRepeatInput register={register} errors={errors} />
         <button className={styles.button}>Зарегистрировать</button>
       </form>
     </>

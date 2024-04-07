@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import React, { MutableRefObject, useRef } from "react";
+import { MutableRefObject, useRef } from "react";
 
-import styles from "@/styles/auth/index.module.scss";
 import SignUpForm from "../modules/AuthForm/SignUpForm";
 
+import styles from "@/styles/auth/index.module.scss";
 const AuthPage = () => {
   const container = useRef() as MutableRefObject<HTMLDivElement>;
 
