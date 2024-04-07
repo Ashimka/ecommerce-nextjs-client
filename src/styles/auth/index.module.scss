@@ -1,7 +1,12 @@
 .main {
+  background: #f6f5f7;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
 }
 .h1 {
   font-weight: bold;
@@ -55,6 +60,14 @@
   padding: 0 50px;
   height: 100%;
   text-align: center;
+
+  &_label {
+    position: relative;
+  }
+
+  &_label:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }
 .input {
   background-color: #eee;
@@ -67,11 +80,10 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  //   position: relative;
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  height: 480px;
   &.right_panel_active {
     .sign_in_container {
       transform: translateX(100%);
@@ -176,7 +188,7 @@
   }
   .social_container {
     margin: 20px 0;
-    a {
+    .social {
       border: 1px solid #dddddd;
       border-radius: 50%;
       display: inline-flex;
@@ -186,5 +198,12 @@
       height: 40px;
       width: 40px;
     }
+  }
+  .error_alert {
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    left: 10px;
+    bottom: -15px;
   }
 }

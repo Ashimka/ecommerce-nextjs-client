@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { MutableRefObject, useRef } from "react";
 
 import styles from "@/styles/auth/index.module.scss";
+import SignUpForm from "../modules/AuthForm/SignUpForm";
 
 const AuthPage = () => {
   const container = useRef() as MutableRefObject<HTMLDivElement>;
@@ -15,38 +16,7 @@ const AuthPage = () => {
     <main className={styles.main}>
       <div className={styles.container} ref={container} id="container">
         <div className={`${styles.form_container} ${styles.sign_up_container}`}>
-          <form className={styles.form}>
-            <h1 className={styles.h1}>Создать аккаунт</h1>
-            <div className={styles.social_container}>
-              <a href="#" className={styles.social}>
-                <Image
-                  src="img/vk.svg"
-                  alt="Логотип в контактк"
-                  width={24}
-                  height={24}
-                />
-              </a>
-              <a href="#" className={styles.social}>
-                <Image
-                  src="img/ya.svg"
-                  alt="Логотип в контактк"
-                  width={24}
-                  height={24}
-                />
-              </a>
-            </div>
-            <span className={styles.span}>
-              или используйте свой email для регистрации
-            </span>
-            <input className={styles.input} type="text" placeholder="Телефон" />
-            <input className={styles.input} type="email" placeholder="Email" />
-            <input
-              className={styles.input}
-              type="password"
-              placeholder="Пароль"
-            />
-            <button className={styles.button}>Зарегистрировать</button>
-          </form>
+          <SignUpForm switchForm={switchForm} />
         </div>
         <div className={`${styles.form_container} ${styles.sign_in_container}`}>
           <form className={styles.form}>
@@ -55,7 +25,7 @@ const AuthPage = () => {
               <a href="#" className={styles.social}>
                 <Image
                   src="img/vk.svg"
-                  alt="Логотип в контактк"
+                  alt="Логотип в контакте"
                   width={24}
                   height={24}
                 />
@@ -63,7 +33,7 @@ const AuthPage = () => {
               <a href="#" className={styles.social}>
                 <Image
                   src="img/ya.svg"
-                  alt="Логотип в контактк"
+                  alt="Логотип яндекс"
                   width={24}
                   height={24}
                 />
