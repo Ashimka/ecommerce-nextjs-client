@@ -17,3 +17,9 @@ export interface ISignUpFn {
   password: string;
   passwordRepeat: string;
 }
+
+export interface ISignInFn {
+  url: string;
+  phone: string;
+  password: string;
+}

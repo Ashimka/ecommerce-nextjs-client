@@ -2,8 +2,8 @@
 
 import { createEffect } from "effector";
 import axiosApi from "./axiosClient";
-// import { toast } from "react-toastify";
-import { ISignUpFn } from "@/types/auth";
+import { toast } from "react-toastify";
+import { ISignInFn, ISignUpFn } from "@/types/auth";
 
 export const signUpFn = createEffect(
   async ({ url, phone, email, password, passwordRepeat }: ISignUpFn) => {
@@ -15,11 +15,28 @@ export const signUpFn = createEffect(
     });
 
     if (data.warningMessage) {
-      // toast.warning(data.warningMessage);
+      toast.warning(data.warningMessage);
       return;
     }
 
-    //  toast.success("Регистрация прощла успешно!");
+    toast.success("Регистрация прощла успешно!");
+
+    return data;
+  }
+);
+export const signInFn = createEffect(
+  async ({ url, phone, password }: ISignInFn) => {
+    const { data } = await axiosApi.post(url, {
+      phone,
+      password,
+    });
+
+    if (data.warningMessage) {
+      toast.warning(data.warningMessage);
+      return;
+    }
+
+    toast.success("Вход выполнен успешно!");
 
     return data;
   }

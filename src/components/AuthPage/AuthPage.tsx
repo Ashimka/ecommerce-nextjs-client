@@ -1,10 +1,10 @@
 "use client";
-import Image from "next/image";
 import { MutableRefObject, useRef } from "react";
 
 import SignUpForm from "../modules/AuthForm/SignUpForm";
 
 import styles from "@/styles/auth/index.module.scss";
+import SignInForm from "../modules/AuthForm/SingInForm";
 const AuthPage = () => {
   const container = useRef() as MutableRefObject<HTMLDivElement>;
 
@@ -19,38 +19,7 @@ const AuthPage = () => {
           <SignUpForm switchForm={switchForm} />
         </div>
         <div className={`${styles.form_container} ${styles.sign_in_container}`}>
-          <form className={styles.form}>
-            <h1 className={styles.h1}>Войти</h1>
-            <div className={styles.social_container}>
-              <a href="#" className={styles.social}>
-                <Image
-                  src="img/vk.svg"
-                  alt="Логотип в контакте"
-                  width={24}
-                  height={24}
-                />
-              </a>
-              <a href="#" className={styles.social}>
-                <Image
-                  src="img/ya.svg"
-                  alt="Логотип яндекс"
-                  width={24}
-                  height={24}
-                />
-              </a>
-            </div>
-            <span className={styles.span}>
-              или используйте свою учетную запись
-            </span>
-            <input className={styles.input} type="text" placeholder="Телефон" />
-            <input
-              className={styles.input}
-              type="password"
-              placeholder="Пароль"
-            />
-            <a href="#">Забыли пароль?</a>
-            <button className={styles.button}>Войти</button>
-          </form>
+          <SignInForm />
         </div>
         <div className={styles.overlay_container}>
           <div className={styles.overlay}>

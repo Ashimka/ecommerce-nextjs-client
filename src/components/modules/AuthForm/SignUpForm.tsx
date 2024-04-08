@@ -10,7 +10,7 @@ import { signUpFn } from "@/api/auth";
 import { IInputs } from "@/types/auth";
 import styles from "@/styles/auth/index.module.scss";
 import PasswordRepeatInput from "@/components/elements/AuthPage/PasswordRepeatInput";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
   const {
@@ -22,14 +22,13 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
 
   const onSubmit = async (data: IInputs) => {
     try {
-      const userData = await signUpFn({
+      await signUpFn({
         url: "/auth/register",
         phone: data.phone,
         email: data.email,
         password: data.password,
         passwordRepeat: data.passwordRepeat,
       });
-      console.log(userData);
 
       resetField("phone");
       resetField("email");
@@ -37,7 +36,7 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
 
       switchForm();
     } catch (error) {
-      // toast.error((error as Error).message);
+      toast.error((error as Error).message);
     }
   };
   return (
