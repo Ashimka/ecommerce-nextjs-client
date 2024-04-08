@@ -7,10 +7,11 @@ import PasswordInput from "@/components/elements/AuthPage/PasswordInput";
 import PhoneInput from "@/components/elements/AuthPage/PhoneInput";
 
 import { signInFn } from "@/api/auth";
+import { showAuthError } from "@/utils/errors";
 import { IInputs } from "@/types/auth";
+
 import styles from "@/styles/auth/index.module.scss";
 import spinnerStyles from "@/styles/spinner/index.module.scss";
-import { toast } from "react-toastify";
 
 const SignInForm = () => {
   const [spinner, setSpinner] = React.useState(false);
@@ -35,7 +36,7 @@ const SignInForm = () => {
       resetField("phone");
       resetField("password");
     } catch (error) {
-      toast.error((error as Error).message);
+      showAuthError(error);
     } finally {
       setSpinner(false);
     }

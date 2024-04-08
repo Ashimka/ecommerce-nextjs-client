@@ -14,11 +14,6 @@ export const signUpFn = createEffect(
       passwordRepeat,
     });
 
-    if (data.warningMessage) {
-      toast.warning(data.warningMessage);
-      return;
-    }
-
     toast.success("Регистрация прощла успешно!");
 
     return data;
@@ -30,11 +25,6 @@ export const signInFn = createEffect(
       phone,
       password,
     });
-
-    if (data.warningMessage) {
-      toast.warning(data.warningMessage);
-      return;
-    }
 
     toast.success("Вход выполнен успешно!");
 

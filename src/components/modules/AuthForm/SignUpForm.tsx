@@ -10,9 +10,10 @@ import PasswordRepeatInput from "@/components/elements/AuthPage/PasswordRepeatIn
 
 import { signUpFn } from "@/api/auth";
 import { IInputs } from "@/types/auth";
+import { showAuthError } from "@/utils/errors";
+
 import styles from "@/styles/auth/index.module.scss";
 import spinnerStyles from "@/styles/spinner/index.module.scss";
-import { toast } from "react-toastify";
 
 const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
   const [spinner, setSpinner] = React.useState(false);
@@ -39,10 +40,11 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
       resetField("phone");
       resetField("email");
       resetField("password");
+      resetField("passwordRepeat");
 
       switchForm();
     } catch (error) {
-      toast.error((error as Error).message);
+      showAuthError(error);
     } finally {
       setSpinner(false);
     }
