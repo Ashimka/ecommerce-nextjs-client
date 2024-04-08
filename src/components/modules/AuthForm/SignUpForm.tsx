@@ -1,18 +1,22 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
 import EmailInput from "@/components/elements/AuthPage/EmailInput";
 import PasswordInput from "@/components/elements/AuthPage/PasswordInput";
 import PhoneInput from "@/components/elements/AuthPage/PhoneInput";
+import PasswordRepeatInput from "@/components/elements/AuthPage/PasswordRepeatInput";
 
 import { signUpFn } from "@/api/auth";
 import { IInputs } from "@/types/auth";
 import styles from "@/styles/auth/index.module.scss";
-import PasswordRepeatInput from "@/components/elements/AuthPage/PasswordRepeatInput";
+import spinnerStyles from "@/styles/spinner/index.module.scss";
 import { toast } from "react-toastify";
 
 const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
+  const [spinner, setSpinner] = React.useState(false);
+
   const {
     register,
     formState: { errors },
@@ -22,6 +26,8 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
 
   const onSubmit = async (data: IInputs) => {
     try {
+      setSpinner(true);
+
       await signUpFn({
         url: "/auth/register",
         phone: data.phone,
@@ -37,6 +43,8 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
       switchForm();
     } catch (error) {
       toast.error((error as Error).message);
+    } finally {
+      setSpinner(false);
     }
   };
   return (
@@ -68,7 +76,13 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
         <EmailInput register={register} errors={errors} />
         <PasswordInput register={register} errors={errors} />
         <PasswordRepeatInput register={register} errors={errors} />
-        <button className={styles.button}>Зарегистрировать</button>
+        <button className={styles.button}>
+          {spinner ? (
+            <div className={spinnerStyles.spinner} />
+          ) : (
+            "Зарегистрировать"
+          )}
+        </button>
       </form>
     </>
   );
