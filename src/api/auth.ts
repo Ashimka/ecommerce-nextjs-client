@@ -14,7 +14,7 @@ export const signUpFn = createEffect(
       passwordRepeat,
     });
 
-    toast.success("Регистрация прощла успешно!");
+    toast.success("Регистрация прошла успешно!");
 
     return data;
   }

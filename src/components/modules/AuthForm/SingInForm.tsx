@@ -44,7 +44,6 @@ const SignInForm = () => {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.h1}>Вход</h1>
         <div className={styles.social_container}>
           <a href="#" className={styles.social}>
             <Image
@@ -63,7 +62,6 @@ const SignInForm = () => {
             />
           </a>
         </div>
-        <span className={styles.span}>или используйте свою учетную запись</span>
         <PhoneInput register={register} errors={errors} />
         <PasswordInput register={register} errors={errors} />
         <button className={styles.button}>

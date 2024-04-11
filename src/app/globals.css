@@ -27,7 +27,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .container {
-  max-width: 1466px;
+  max-width: 1024px;
   padding: 0 15px;
   margin: 0 auto;
 }

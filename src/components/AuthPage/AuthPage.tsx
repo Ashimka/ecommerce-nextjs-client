@@ -1,54 +1,57 @@
 "use client";
-import { MutableRefObject, useRef } from "react";
-
+import React, { MutableRefObject, useRef } from "react";
+import SignInForm from "../modules/AuthForm/SingInForm";
 import SignUpForm from "../modules/AuthForm/SignUpForm";
 
 import styles from "@/styles/auth/index.module.scss";
-import SignInForm from "../modules/AuthForm/SingInForm";
-const AuthPage = () => {
-  const container = useRef() as MutableRefObject<HTMLDivElement>;
 
-  const switchForm = () => {
-    container.current.classList.toggle(styles.right_panel_active);
+const AuthPage = () => {
+  const [switchForm, setSwitchForm] = React.useState("login");
+  const login = useRef() as MutableRefObject<HTMLDivElement>;
+  const register = useRef() as MutableRefObject<HTMLDivElement>;
+
+  const switchFormLogin = () => {
+    if (switchForm === "login") {
+      return;
+    }
+    setSwitchForm((prev) => (prev = "login"));
+
+    register.current.classList.toggle(styles.inactive);
+    login.current.classList.toggle(styles.inactive);
+  };
+
+  const switchFormRegister = () => {
+    if (switchForm === "register") {
+      return;
+    }
+
+    setSwitchForm((prev) => (prev = "register"));
+
+    register.current.classList.toggle(styles.inactive);
+    login.current.classList.toggle(styles.inactive);
   };
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container} ref={container} id="container">
-        <div className={`${styles.form_container} ${styles.sign_up_container}`}>
-          <SignUpForm switchForm={switchForm} />
-        </div>
-        <div className={`${styles.form_container} ${styles.sign_in_container}`}>
-          <SignInForm />
-        </div>
-        <div className={styles.overlay_container}>
-          <div className={styles.overlay}>
-            <div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
-              <h1 className={styles.h1}>Добро пожаловать!</h1>
-              <p className={styles.p}>Зарегистрированны? Войдите</p>
-              <button
-                className={`${styles.button} ${styles.ghost}`}
-                onClick={switchForm}
-                id="signIn"
-              >
-                Вход
-              </button>
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.form_container}>
+          <div className={styles.form_header}>
+            <div className={styles.item} ref={login} onClick={switchFormLogin}>
+              Вход
             </div>
-            <div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
-              <h1 className={styles.h1}>Привет!</h1>
-              <p className={styles.p}>Зарегистрируйтесь на сайте</p>
-              <button
-                className={`${styles.button} ${styles.ghost}`}
-                onClick={switchForm}
-                id="signUp"
-              >
-                Регистрация
-              </button>
+            <div
+              className={`${styles.item} ${styles.inactive}`}
+              ref={register}
+              onClick={switchFormRegister}
+            >
+              Регистрация
             </div>
           </div>
+          {switchForm === "login" && <SignInForm />}
+          {switchForm === "register" && <SignUpForm />}
         </div>
       </div>
-    </main>
+    </>
   );
 };
 

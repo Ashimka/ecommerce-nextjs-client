@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <AuthPage />
       <ToastContainer
         position="top-left"
@@ -15,7 +15,7 @@ const Home = () => {
         limit={1}
         theme="colored"
       />
-    </div>
+    </>
   );
 };
 export default Home;

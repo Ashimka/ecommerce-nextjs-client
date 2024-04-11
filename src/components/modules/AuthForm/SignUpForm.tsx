@@ -15,7 +15,7 @@ import { showAuthError } from "@/utils/errors";
 import styles from "@/styles/auth/index.module.scss";
 import spinnerStyles from "@/styles/spinner/index.module.scss";
 
-const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
+const SignUpForm = () => {
   const [spinner, setSpinner] = React.useState(false);
 
   const {
@@ -41,8 +41,6 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
       resetField("email");
       resetField("password");
       resetField("passwordRepeat");
-
-      switchForm();
     } catch (error) {
       showAuthError(error);
     } finally {
@@ -52,7 +50,6 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <h1 className={styles.h1}>Создать аккаунт</h1>
         <div className={styles.social_container}>
           <a href="#" className={styles.social}>
             <Image
@@ -71,9 +68,7 @@ const SignUpForm = ({ switchForm }: { switchForm: () => void }) => {
             />
           </a>
         </div>
-        <span className={styles.span}>
-          или используйте свой email для регистрации
-        </span>
+
         <PhoneInput register={register} errors={errors} />
         <EmailInput register={register} errors={errors} />
         <PasswordInput register={register} errors={errors} />
