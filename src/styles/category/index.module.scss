@@ -1,0 +1,19 @@
+.cat {
+  background-color: aqua;
+  position: absolute;
+  top: 50px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 5;
+  transition: all 1s ease-out;
+
+  &__list {
+    padding: 10px 20px;
+
+    &:hover {
+      color: green;
+    }
+  }
+}
