@@ -32,7 +32,7 @@ export const menuList = [
     path: "/napitki",
   },
   {
-    name: "Десарты",
+    name: "Десерты",
     path: "/deserty",
   },
 ];

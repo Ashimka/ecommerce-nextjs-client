@@ -5,11 +5,13 @@ import Image from "next/image";
 
 import Cetegory from "@/components/elements/Menu/Cetegory";
 import { navLinks } from "@/constants/navLinks";
+import { useClickOutside } from "@/hooks/useClickOutside";
+
 import stylesNav from "@/styles/navbar/index.module.scss";
 
 const Header = () => {
   const [open, setOpen] = React.useState(false);
-
+  const menuRef = useClickOutside(() => setOpen(false));
   const clickMenu = () => {
     setOpen(!open);
   };
@@ -17,7 +19,11 @@ const Header = () => {
     <>
       <header className={stylesNav.header}>
         <nav className={stylesNav.header_nav}>
-          <div className={stylesNav.header_menu} onClick={clickMenu}>
+          <div
+            className={stylesNav.header_menu}
+            onClick={clickMenu}
+            ref={menuRef}
+          >
             {open ? (
               <>
                 <Image
