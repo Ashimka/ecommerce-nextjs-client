@@ -53,7 +53,7 @@ const SignUpForm = () => {
         <div className={styles.social_container}>
           <a href="#" className={styles.social}>
             <Image
-              src="img/vk.svg"
+              src="/img/vk.svg"
               alt="Логотип в контакте"
               width={24}
               height={24}
@@ -61,7 +61,7 @@ const SignUpForm = () => {
           </a>
           <a href="#" className={styles.social}>
             <Image
-              src="img/ya.svg"
+              src="/img/ya.svg"
               alt="Логотип яндекс"
               width={24}
               height={24}

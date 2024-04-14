@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+import basket from "../../public/icons/shop_basket.svg";
+import user from "../../public/icons/user.svg";
+
 export const navLinks = [
   {
     title: "KIOTO",
@@ -8,20 +11,13 @@ export const navLinks = [
   {
     title: "Корзина",
     path: "/cart",
-    icon: (
-      <Image src="icons/shop_basket.svg" alt="Корзина" width={24} height={24} />
-    ),
+    icon: <Image src={basket} alt="Корзина" width={24} height={24} />,
   },
   {
     title: "Профиль",
-    path: "/profiles",
+    path: "/auth/login",
     icon: (
-      <Image
-        src="icons/user.svg"
-        alt="Профиль пользователя"
-        width={24}
-        height={24}
-      />
+      <Image src={user} alt="Профиль пользователя" width={24} height={24} />
     ),
   },
 ];

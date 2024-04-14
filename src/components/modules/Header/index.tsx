@@ -7,6 +7,9 @@ import Cetegory from "@/components/elements/Menu/Cetegory";
 import { navLinks } from "@/constants/navLinks";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
+import cross from "../../../../public/icons/cross.svg";
+import menuBurger from "../../../../public/icons/menu_burger.svg";
+
 import stylesNav from "@/styles/navbar/index.module.scss";
 
 const Header = () => {
@@ -26,18 +29,13 @@ const Header = () => {
           >
             {open ? (
               <>
-                <Image
-                  src="icons/cross.svg"
-                  alt="Скрыть меню"
-                  width={24}
-                  height={24}
-                />
+                <Image src={cross} alt="Скрыть меню" width={24} height={24} />
                 <span className={stylesNav.menu}>menu</span>
               </>
             ) : (
               <>
                 <Image
-                  src="icons/menu_burger.svg"
+                  src={menuBurger}
                   alt="Раскрыть меню"
                   width={24}
                   height={24}
