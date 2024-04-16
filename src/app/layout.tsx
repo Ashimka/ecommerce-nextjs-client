@@ -27,8 +27,13 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={roboto.className}>
-        <Header />
-        {children}
+        <div className="root">
+          <Header />
+          <main className="main">
+            <div className="container">{children}</div>
+          </main>
+          <footer className="footer">footer</footer>
+        </div>
         <ToastContainer
           position="top-left"
           hideProgressBar={false}

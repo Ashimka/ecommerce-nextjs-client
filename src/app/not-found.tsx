@@ -9,7 +9,7 @@ const notFound = () => {
       <div className={style.not_found}>
         <span className={style.not_found__title}>Страница не найдена</span>
         <Link className={style.not_found__link} href={"/"}>
-          назад
+          на главную
         </Link>
       </div>
     </div>

@@ -7,6 +7,7 @@ export const useClickOutside = (callback: () => void) => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();
+        document.querySelector("body")?.classList.remove("hidden");
       }
     };
 

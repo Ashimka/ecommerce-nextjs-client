@@ -15,12 +15,15 @@ import stylesNav from "@/styles/navbar/index.module.scss";
 const Header = () => {
   const [open, setOpen] = React.useState(false);
   const menuRef = useClickOutside(() => setOpen(false));
+
   const clickMenu = () => {
     setOpen(!open);
+    document.querySelector("body")?.classList.toggle("hidden");
   };
+
   return (
     <>
-      <header className={stylesNav.header}>
+      <header className={`container ${stylesNav.header}`}>
         <nav className={stylesNav.header_nav}>
           <div
             className={stylesNav.header_menu}
@@ -54,8 +57,8 @@ const Header = () => {
             ))}
           </ul>
         </nav>
+        <Cetegory open={open} />
       </header>
-      <Cetegory open={open} />
     </>
   );
 };
